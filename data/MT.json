@@ -1,0 +1,54 @@
+{
+  "state": "MT",
+  "stateName": "Montana",
+  "agencyType": "SAA",
+  "agencyTypeDescription": "State Apprenticeship Agency — state administers its own apprenticeship program",
+  "hasPublicWorksRequirement": true,
+  "requirement": {
+    "requirementType": "ratio",
+    "ratioDescription": "Apprentice-to-journeyman ratios per registered program standards on public works",
+    "ratioValue": "Per program standards",
+    "projectThreshold": "$25,000",
+    "projectThresholdValue": 25000,
+    "statute": "MCA 18-2-416",
+    "statuteUrl": "https://leg.mt.gov/bills/mca/title_0180/chapter_0020/part_0040/section_0160/0180-0020-0040-0160.html",
+    "exemptions": [
+      "Projects under $25,000",
+      "Emergency work"
+    ],
+    "tradeSpecificRatios": [],
+    "notes": "Montana requires apprentice employment on public works projects. Contractors must comply with ratios established in their apprenticeship program standards.",
+    "penaltyDescription": "Withholding of payment and potential debarment",
+    "enforcementAgency": "Montana Department of Labor and Industry",
+    "enforcementUrl": "https://dli.mt.gov/apprenticeship"
+  },
+  "iraFederalRequirement": {
+    "applies": true,
+    "ratioDescription": "15% apprentice labor hours on IRA/IIJA-funded clean energy projects over $1 million",
+    "ratioValue": "15%",
+    "projectThreshold": "$1,000,000",
+    "statute": "Inflation Reduction Act of 2022, 26 USC 45(b)(8)",
+    "statuteUrl": "https://www.irs.gov/credits-deductions/prevailing-wage-and-apprenticeship-requirements",
+    "notes": "Federal requirement for enhanced clean energy tax credits. Applies nationwide regardless of state law. Began 2023, percentage increases over time.",
+    "effectiveDate": "2023-01-01",
+    "escalation": [
+      {
+        "year": 2023,
+        "percentage": "10%"
+      },
+      {
+        "year": 2024,
+        "percentage": "12.5%"
+      },
+      {
+        "year": 2025,
+        "percentage": "15%"
+      }
+    ]
+  },
+  "sourceUrls": [
+    "https://leg.mt.gov/bills/mca/title_0180/chapter_0020/part_0040/section_0160/0180-0020-0040-0160.html",
+    "https://dli.mt.gov/apprenticeship"
+  ],
+  "lastVerified": "2026-02-06"
+}

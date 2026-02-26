@@ -1,0 +1,54 @@
+{
+  "state": "CO",
+  "stateName": "Colorado",
+  "agencyType": "SAA",
+  "agencyTypeDescription": "State Apprenticeship Agency — state administers its own apprenticeship program",
+  "hasPublicWorksRequirement": true,
+  "requirement": {
+    "requirementType": "utilization",
+    "ratioDescription": "Apprentice utilization goals on state-funded projects",
+    "ratioValue": "10% goal",
+    "projectThreshold": "$500,000",
+    "projectThresholdValue": 500000,
+    "statute": "CRS 8-83-106",
+    "statuteUrl": "https://leg.colorado.gov/sites/default/files/images/olls/crs2023-title-08.pdf",
+    "exemptions": [
+      "Projects under $500,000",
+      "Good faith effort compliance"
+    ],
+    "tradeSpecificRatios": [],
+    "notes": "Colorado sets apprentice utilization goals (not strict mandates) on larger state-funded projects. Recent legislation has strengthened requirements.",
+    "penaltyDescription": "Good faith documentation required; no fixed penalty",
+    "enforcementAgency": "Colorado Department of Labor and Employment",
+    "enforcementUrl": "https://cdle.colorado.gov/apprenticeship"
+  },
+  "iraFederalRequirement": {
+    "applies": true,
+    "ratioDescription": "15% apprentice labor hours on IRA/IIJA-funded clean energy projects over $1 million",
+    "ratioValue": "15%",
+    "projectThreshold": "$1,000,000",
+    "statute": "Inflation Reduction Act of 2022, 26 USC 45(b)(8)",
+    "statuteUrl": "https://www.irs.gov/credits-deductions/prevailing-wage-and-apprenticeship-requirements",
+    "notes": "Federal requirement for enhanced clean energy tax credits. Applies nationwide regardless of state law. Began 2023, percentage increases over time.",
+    "effectiveDate": "2023-01-01",
+    "escalation": [
+      {
+        "year": 2023,
+        "percentage": "10%"
+      },
+      {
+        "year": 2024,
+        "percentage": "12.5%"
+      },
+      {
+        "year": 2025,
+        "percentage": "15%"
+      }
+    ]
+  },
+  "sourceUrls": [
+    "https://leg.colorado.gov/sites/default/files/images/olls/crs2023-title-08.pdf",
+    "https://cdle.colorado.gov/apprenticeship"
+  ],
+  "lastVerified": "2026-02-06"
+}

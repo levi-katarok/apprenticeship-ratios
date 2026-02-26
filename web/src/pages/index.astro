@@ -1,0 +1,237 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { promises as fs } from 'fs';
+import path from 'path';
+
+// Load index data at build time
+const dataDir = path.join(process.cwd(), '..', 'data');
+let indexData = { states: {} as Record<string, {name: string, hasRequirement: boolean, agencyType: string}>, lastUpdated: '' };
+
+try {
+  const indexPath = path.join(dataDir, 'index.json');
+  const content = await fs.readFile(indexPath, 'utf-8');
+  indexData = JSON.parse(content);
+} catch (e) {
+  // Index doesn't exist yet, use defaults
+}
+
+const states = Object.keys(indexData.states).sort();
+
+// Format last updated date
+const lastUpdated = indexData.lastUpdated
+  ? new Date(indexData.lastUpdated).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  : null;
+
+// State name lookup
+const stateNames: Record<string, string> = {
+  'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California',
+  'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware', 'DC': 'District of Columbia', 'FL': 'Florida',
+  'GA': 'Georgia', 'HI': 'Hawaii', 'ID': 'Idaho', 'IL': 'Illinois', 'IN': 'Indiana',
+  'IA': 'Iowa', 'KS': 'Kansas', 'KY': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine',
+  'MD': 'Maryland', 'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi',
+  'MO': 'Missouri', 'MT': 'Montana', 'NE': 'Nebraska', 'NV': 'Nevada', 'NH': 'New Hampshire',
+  'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York', 'NC': 'North Carolina', 'ND': 'North Dakota',
+  'OH': 'Ohio', 'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania',
+  'RI': 'Rhode Island', 'SC': 'South Carolina', 'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas',
+  'UT': 'Utah', 'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington',
+  'WV': 'West Virginia', 'WI': 'Wisconsin', 'WY': 'Wyoming'
+};
+
+const statesWithReq = states.filter(s => indexData.states[s]?.hasRequirement);
+const statesWithoutReq = states.filter(s => !indexData.states[s]?.hasRequirement);
+---
+
+<Layout title="Apprenticeship Ratio Requirements by State">
+  <!-- Title -->
+  <header class="mb-12">
+    <h1 class="font-serif text-4xl text-stone-900 mb-3">
+      Apprenticeship Ratio Requirements
+    </h1>
+    <p class="text-stone-600 text-lg max-w-xl leading-relaxed mb-3">
+      State-by-state apprenticeship requirements for public works construction.
+      Free, no login required.
+    </p>
+    {lastUpdated && (
+      <p class="text-sm text-stone-500">
+        <span class="font-medium">Data updated:</span> {lastUpdated}
+      </p>
+    )}
+  </header>
+
+  <!-- Search -->
+  <section class="mb-16 relative">
+    <label for="search" class="block text-sm text-stone-500 mb-2">
+      Search by state
+    </label>
+    <input
+      type="text"
+      id="search"
+      placeholder="California, New York, Oregon..."
+      autocomplete="off"
+      class="w-full max-w-lg px-0 py-2 bg-transparent border-0 border-b-2 border-stone-300 focus:border-stone-900 focus:ring-0 text-lg placeholder-stone-400 transition-colors"
+    />
+
+    <!-- Search Results -->
+    <div id="results" class="hidden max-w-lg mt-4">
+      <div id="results-list" class="space-y-1"></div>
+      <p id="results-count" class="text-sm text-stone-400 mt-4 pt-4 border-t border-stone-200"></p>
+    </div>
+  </section>
+
+  <!-- States Grid -->
+  <section id="states-section">
+    <h2 class="font-serif text-2xl text-stone-900 mb-6">By State</h2>
+
+    {states.length > 0 ? (
+      <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-x-4 gap-y-2">
+        {states.map((code) => {
+          const hasReq = indexData.states[code]?.hasRequirement;
+          return (
+            <a
+              href={`/state/${code.toLowerCase()}`}
+              class="group py-1 flex items-center gap-1"
+            >
+              <span class={`inline-block w-2 h-2 rounded-full ${hasReq ? 'bg-green-600' : 'bg-stone-300'}`}></span>
+              <span class="font-mono text-sm text-stone-900 group-hover:underline">{code}</span>
+            </a>
+          );
+        })}
+      </div>
+    ) : (
+      <p class="text-stone-500 py-8 border-t border-b border-stone-200">
+        No data loaded yet.
+      </p>
+    )}
+
+    <div class="flex items-center gap-6 mt-4 text-xs text-stone-500">
+      <span class="flex items-center gap-1"><span class="inline-block w-2 h-2 rounded-full bg-green-600"></span> Has state requirement ({statesWithReq.length})</span>
+      <span class="flex items-center gap-1"><span class="inline-block w-2 h-2 rounded-full bg-stone-300"></span> No state requirement ({statesWithoutReq.length})</span>
+    </div>
+  </section>
+
+  <!-- IRA Notice -->
+  <aside class="mt-12 p-6 bg-stone-100 rounded-lg">
+    <h3 class="font-serif text-lg text-stone-900 mb-2">Federal IRA Requirement</h3>
+    <p class="text-stone-700 text-sm leading-relaxed mb-2">
+      The Inflation Reduction Act requires <strong>15% apprentice labor hours</strong> on IRA/IIJA-funded
+      clean energy projects over $1 million. This applies <strong>nationwide</strong> regardless of state law.
+    </p>
+    <a href="https://www.irs.gov/credits-deductions/prevailing-wage-and-apprenticeship-requirements" class="text-sm text-stone-600 underline hover:text-stone-900" target="_blank" rel="noopener">
+      IRS guidance on prevailing wage and apprenticeship requirements
+    </a>
+  </aside>
+
+  <!-- About -->
+  <aside class="mt-16 pt-8 border-t border-stone-200 text-sm text-stone-600 max-w-xl leading-relaxed">
+    <p class="mb-4">
+      Many states require contractors on public works projects to employ apprentices
+      at specified ratios. Requirements vary by state and can include specific
+      apprentice-to-journeyman ratios or minimum utilization percentages.
+    </p>
+    <p>
+      This site compiles apprenticeship requirements from state statutes and
+      agency websites. Data is manually verified — see individual state pages for source links.
+    </p>
+  </aside>
+</Layout>
+
+<style>
+  input:focus {
+    outline: none;
+  }
+</style>
+
+<script>
+  const stateData: Record<string, {name: string, code: string, hasReq: boolean, url: string}> = {};
+
+  // Build search data from the page
+  document.querySelectorAll('#states-section a[href^="/state/"]').forEach(link => {
+    const href = (link as HTMLAnchorElement).href;
+    const code = link.querySelector('.font-mono')?.textContent?.trim() || '';
+    const hasReq = link.querySelector('.bg-green-600') !== null;
+    const names: Record<string, string> = {
+      'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California',
+      'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware', 'DC': 'District of Columbia', 'FL': 'Florida',
+      'GA': 'Georgia', 'HI': 'Hawaii', 'ID': 'Idaho', 'IL': 'Illinois', 'IN': 'Indiana',
+      'IA': 'Iowa', 'KS': 'Kansas', 'KY': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine',
+      'MD': 'Maryland', 'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi',
+      'MO': 'Missouri', 'MT': 'Montana', 'NE': 'Nebraska', 'NV': 'Nevada', 'NH': 'New Hampshire',
+      'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York', 'NC': 'North Carolina', 'ND': 'North Dakota',
+      'OH': 'Ohio', 'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania',
+      'RI': 'Rhode Island', 'SC': 'South Carolina', 'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas',
+      'UT': 'Utah', 'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington',
+      'WV': 'West Virginia', 'WI': 'Wisconsin', 'WY': 'Wyoming'
+    };
+    stateData[code] = { name: names[code] || code, code, hasReq, url: `/state/${code.toLowerCase()}` };
+  });
+
+  const searchInput = document.getElementById('search') as HTMLInputElement;
+  const resultsDiv = document.getElementById('results') as HTMLDivElement;
+  const resultsList = document.getElementById('results-list') as HTMLDivElement;
+  const resultsCount = document.getElementById('results-count') as HTMLParagraphElement;
+  const statesSection = document.getElementById('states-section') as HTMLElement;
+
+  function createResultElement(entry: {name: string, code: string, hasReq: boolean, url: string}): HTMLElement {
+    const link = document.createElement('a');
+    link.href = entry.url;
+    link.className = 'block py-2 border-b border-stone-100 hover:bg-stone-50 -mx-2 px-2';
+
+    const textSpan = document.createElement('span');
+    textSpan.className = 'text-stone-900';
+    textSpan.textContent = `${entry.name} (${entry.code})`;
+
+    const statusSpan = document.createElement('span');
+    statusSpan.className = `text-xs ml-2 ${entry.hasReq ? 'text-green-700' : 'text-stone-400'}`;
+    statusSpan.textContent = entry.hasReq ? 'Has requirement' : 'No state requirement';
+
+    link.appendChild(textSpan);
+    link.appendChild(statusSpan);
+    return link;
+  }
+
+  searchInput?.addEventListener('input', (e) => {
+    const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+
+    if (query.length < 1) {
+      resultsDiv.classList.add('hidden');
+      statesSection.classList.remove('hidden');
+      return;
+    }
+
+    const matches = Object.values(stateData).filter(entry => {
+      const searchText = `${entry.name} ${entry.code}`.toLowerCase();
+      return searchText.includes(query);
+    });
+
+    resultsList.replaceChildren();
+
+    if (matches.length === 0) {
+      const noResults = document.createElement('p');
+      noResults.className = 'text-stone-500 py-4';
+      noResults.textContent = 'No results found';
+      resultsList.appendChild(noResults);
+      resultsCount.textContent = '';
+    } else {
+      for (const entry of matches) {
+        resultsList.appendChild(createResultElement(entry));
+      }
+      resultsCount.textContent = `${matches.length} result${matches.length === 1 ? '' : 's'}`;
+    }
+
+    resultsDiv.classList.remove('hidden');
+    statesSection.classList.add('hidden');
+  });
+
+  searchInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      resultsDiv.classList.add('hidden');
+      statesSection.classList.remove('hidden');
+      searchInput.blur();
+    }
+  });
+</script>

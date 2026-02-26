@@ -1,0 +1,54 @@
+{
+  "state": "NY",
+  "stateName": "New York",
+  "agencyType": "SAA",
+  "agencyTypeDescription": "State Apprenticeship Agency — state administers its own apprenticeship program",
+  "hasPublicWorksRequirement": true,
+  "requirement": {
+    "requirementType": "utilization",
+    "ratioDescription": "Apprentice utilization requirements on public works projects",
+    "ratioValue": "Per program standards",
+    "projectThreshold": "$0",
+    "projectThresholdValue": 0,
+    "statute": "New York Labor Law Article 8, Section 220",
+    "statuteUrl": "https://www.nysenate.gov/legislation/laws/LAB/220",
+    "exemptions": [
+      "Small maintenance/repair projects",
+      "Emergency work"
+    ],
+    "tradeSpecificRatios": [],
+    "notes": "New York requires apprentice utilization on prevailing wage projects. Building trades councils often set specific ratios through collective bargaining.",
+    "penaltyDescription": "Penalties under prevailing wage law; potential debarment",
+    "enforcementAgency": "New York Department of Labor",
+    "enforcementUrl": "https://dol.ny.gov/apprenticeship"
+  },
+  "iraFederalRequirement": {
+    "applies": true,
+    "ratioDescription": "15% apprentice labor hours on IRA/IIJA-funded clean energy projects over $1 million",
+    "ratioValue": "15%",
+    "projectThreshold": "$1,000,000",
+    "statute": "Inflation Reduction Act of 2022, 26 USC 45(b)(8)",
+    "statuteUrl": "https://www.irs.gov/credits-deductions/prevailing-wage-and-apprenticeship-requirements",
+    "notes": "Federal requirement for enhanced clean energy tax credits. Applies nationwide regardless of state law. Began 2023, percentage increases over time.",
+    "effectiveDate": "2023-01-01",
+    "escalation": [
+      {
+        "year": 2023,
+        "percentage": "10%"
+      },
+      {
+        "year": 2024,
+        "percentage": "12.5%"
+      },
+      {
+        "year": 2025,
+        "percentage": "15%"
+      }
+    ]
+  },
+  "sourceUrls": [
+    "https://www.nysenate.gov/legislation/laws/LAB/220",
+    "https://dol.ny.gov/apprenticeship"
+  ],
+  "lastVerified": "2026-02-06"
+}

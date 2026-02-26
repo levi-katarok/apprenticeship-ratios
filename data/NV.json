@@ -1,0 +1,54 @@
+{
+  "state": "NV",
+  "stateName": "Nevada",
+  "agencyType": "SAA",
+  "agencyTypeDescription": "State Apprenticeship Agency — state administers its own apprenticeship program",
+  "hasPublicWorksRequirement": true,
+  "requirement": {
+    "requirementType": "ratio",
+    "ratioDescription": "Apprentice-to-journeyman ratio as specified in registered program standards",
+    "ratioValue": "Per program standards",
+    "projectThreshold": "$100,000",
+    "projectThresholdValue": 100000,
+    "statute": "NRS 338.01117",
+    "statuteUrl": "https://www.leg.state.nv.us/nrs/nrs-338.html#NRS338Sec01117",
+    "exemptions": [
+      "Projects under $100,000",
+      "Trades with no registered apprenticeship program in the area"
+    ],
+    "tradeSpecificRatios": [],
+    "notes": "Nevada requires contractors on public works to employ apprentices according to registered program standards. The ratio varies by trade and program.",
+    "penaltyDescription": "Contract penalties and potential debarment",
+    "enforcementAgency": "Nevada State Apprenticeship Council",
+    "enforcementUrl": "https://labor.nv.gov/Apprenticeship/State_Apprenticeship_Council/"
+  },
+  "iraFederalRequirement": {
+    "applies": true,
+    "ratioDescription": "15% apprentice labor hours on IRA/IIJA-funded clean energy projects over $1 million",
+    "ratioValue": "15%",
+    "projectThreshold": "$1,000,000",
+    "statute": "Inflation Reduction Act of 2022, 26 USC 45(b)(8)",
+    "statuteUrl": "https://www.irs.gov/credits-deductions/prevailing-wage-and-apprenticeship-requirements",
+    "notes": "Federal requirement for enhanced clean energy tax credits. Applies nationwide regardless of state law. Began 2023, percentage increases over time.",
+    "effectiveDate": "2023-01-01",
+    "escalation": [
+      {
+        "year": 2023,
+        "percentage": "10%"
+      },
+      {
+        "year": 2024,
+        "percentage": "12.5%"
+      },
+      {
+        "year": 2025,
+        "percentage": "15%"
+      }
+    ]
+  },
+  "sourceUrls": [
+    "https://www.leg.state.nv.us/nrs/nrs-338.html#NRS338Sec01117",
+    "https://labor.nv.gov/Apprenticeship/State_Apprenticeship_Council/"
+  ],
+  "lastVerified": "2026-02-06"
+}

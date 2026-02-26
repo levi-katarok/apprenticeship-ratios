@@ -1,0 +1,312 @@
+{
+  "lastUpdated": "2026-02-06T16:25:43.478Z",
+  "description": "State apprenticeship ratio requirements for public works construction",
+  "states": {
+    "AL": {
+      "name": "Alabama",
+      "file": "AL.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "AK": {
+      "name": "Alaska",
+      "file": "AK.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "AZ": {
+      "name": "Arizona",
+      "file": "AZ.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "AR": {
+      "name": "Arkansas",
+      "file": "AR.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "CA": {
+      "name": "California",
+      "file": "CA.json",
+      "hasRequirement": true,
+      "agencyType": "SAA"
+    },
+    "CO": {
+      "name": "Colorado",
+      "file": "CO.json",
+      "hasRequirement": true,
+      "agencyType": "SAA"
+    },
+    "CT": {
+      "name": "Connecticut",
+      "file": "CT.json",
+      "hasRequirement": true,
+      "agencyType": "SAA"
+    },
+    "DE": {
+      "name": "Delaware",
+      "file": "DE.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "DC": {
+      "name": "District of Columbia",
+      "file": "DC.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "FL": {
+      "name": "Florida",
+      "file": "FL.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "GA": {
+      "name": "Georgia",
+      "file": "GA.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "HI": {
+      "name": "Hawaii",
+      "file": "HI.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "ID": {
+      "name": "Idaho",
+      "file": "ID.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "IL": {
+      "name": "Illinois",
+      "file": "IL.json",
+      "hasRequirement": true,
+      "agencyType": "OA"
+    },
+    "IN": {
+      "name": "Indiana",
+      "file": "IN.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "IA": {
+      "name": "Iowa",
+      "file": "IA.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "KS": {
+      "name": "Kansas",
+      "file": "KS.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "KY": {
+      "name": "Kentucky",
+      "file": "KY.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "LA": {
+      "name": "Louisiana",
+      "file": "LA.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "ME": {
+      "name": "Maine",
+      "file": "ME.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "MD": {
+      "name": "Maryland",
+      "file": "MD.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "MA": {
+      "name": "Massachusetts",
+      "file": "MA.json",
+      "hasRequirement": true,
+      "agencyType": "SAA"
+    },
+    "MI": {
+      "name": "Michigan",
+      "file": "MI.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "MN": {
+      "name": "Minnesota",
+      "file": "MN.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "MS": {
+      "name": "Mississippi",
+      "file": "MS.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "MO": {
+      "name": "Missouri",
+      "file": "MO.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "MT": {
+      "name": "Montana",
+      "file": "MT.json",
+      "hasRequirement": true,
+      "agencyType": "SAA"
+    },
+    "NE": {
+      "name": "Nebraska",
+      "file": "NE.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "NV": {
+      "name": "Nevada",
+      "file": "NV.json",
+      "hasRequirement": true,
+      "agencyType": "SAA"
+    },
+    "NH": {
+      "name": "New Hampshire",
+      "file": "NH.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "NJ": {
+      "name": "New Jersey",
+      "file": "NJ.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "NM": {
+      "name": "New Mexico",
+      "file": "NM.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "NY": {
+      "name": "New York",
+      "file": "NY.json",
+      "hasRequirement": true,
+      "agencyType": "SAA"
+    },
+    "NC": {
+      "name": "North Carolina",
+      "file": "NC.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "ND": {
+      "name": "North Dakota",
+      "file": "ND.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "OH": {
+      "name": "Ohio",
+      "file": "OH.json",
+      "hasRequirement": true,
+      "agencyType": "SAA"
+    },
+    "OK": {
+      "name": "Oklahoma",
+      "file": "OK.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "OR": {
+      "name": "Oregon",
+      "file": "OR.json",
+      "hasRequirement": true,
+      "agencyType": "SAA"
+    },
+    "PA": {
+      "name": "Pennsylvania",
+      "file": "PA.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "RI": {
+      "name": "Rhode Island",
+      "file": "RI.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "SC": {
+      "name": "South Carolina",
+      "file": "SC.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "SD": {
+      "name": "South Dakota",
+      "file": "SD.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "TN": {
+      "name": "Tennessee",
+      "file": "TN.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "TX": {
+      "name": "Texas",
+      "file": "TX.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "UT": {
+      "name": "Utah",
+      "file": "UT.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "VT": {
+      "name": "Vermont",
+      "file": "VT.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "VA": {
+      "name": "Virginia",
+      "file": "VA.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "WA": {
+      "name": "Washington",
+      "file": "WA.json",
+      "hasRequirement": true,
+      "agencyType": "SAA"
+    },
+    "WV": {
+      "name": "West Virginia",
+      "file": "WV.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    },
+    "WI": {
+      "name": "Wisconsin",
+      "file": "WI.json",
+      "hasRequirement": false,
+      "agencyType": "SAA"
+    },
+    "WY": {
+      "name": "Wyoming",
+      "file": "WY.json",
+      "hasRequirement": false,
+      "agencyType": "OA"
+    }
+  }
+}

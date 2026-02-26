@@ -1,0 +1,239 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { promises as fs } from 'fs';
+import path from 'path';
+
+export async function getStaticPaths() {
+  const dataDir = path.join(process.cwd(), '..', 'data');
+
+  try {
+    const files = await fs.readdir(dataDir);
+    const stateFiles = files.filter(f => f.endsWith('.json') && f !== 'index.json');
+
+    return stateFiles.map(file => {
+      const state = file.replace('.json', '').toLowerCase();
+      return { params: { state } };
+    });
+  } catch (e) {
+    return [];
+  }
+}
+
+const { state } = Astro.params;
+const stateUpper = state?.toUpperCase() || '';
+
+// State name lookup
+const stateNames: Record<string, string> = {
+  'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California',
+  'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware', 'DC': 'District of Columbia', 'FL': 'Florida',
+  'GA': 'Georgia', 'HI': 'Hawaii', 'ID': 'Idaho', 'IL': 'Illinois', 'IN': 'Indiana',
+  'IA': 'Iowa', 'KS': 'Kansas', 'KY': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine',
+  'MD': 'Maryland', 'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi',
+  'MO': 'Missouri', 'MT': 'Montana', 'NE': 'Nebraska', 'NV': 'Nevada', 'NH': 'New Hampshire',
+  'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York', 'NC': 'North Carolina', 'ND': 'North Dakota',
+  'OH': 'Ohio', 'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania',
+  'RI': 'Rhode Island', 'SC': 'South Carolina', 'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas',
+  'UT': 'Utah', 'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington',
+  'WV': 'West Virginia', 'WI': 'Wisconsin', 'WY': 'Wyoming'
+};
+
+const stateName = stateNames[stateUpper] || stateUpper;
+
+// Load state data
+const dataDir = path.join(process.cwd(), '..', 'data');
+let stateData: any = { state: stateUpper, hasPublicWorksRequirement: false };
+
+try {
+  const dataPath = path.join(dataDir, `${stateUpper}.json`);
+  const content = await fs.readFile(dataPath, 'utf-8');
+  stateData = JSON.parse(content);
+} catch (e) {
+  // File doesn't exist
+}
+
+const hasReq = stateData.hasPublicWorksRequirement;
+const req = stateData.requirement;
+const ira = stateData.iraFederalRequirement;
+---
+
+<Layout title={`${stateName} Apprenticeship Requirements`} description={`Apprenticeship ratio requirements for public works construction in ${stateName}.`}>
+  <!-- Breadcrumb -->
+  <nav class="text-sm text-stone-500 mb-8">
+    <a href="/" class="hover:text-stone-900 underline">Home</a>
+    <span class="mx-2">/</span>
+    <span class="text-stone-700">{stateName}</span>
+  </nav>
+
+  <!-- Header -->
+  <header class="mb-12">
+    <h1 class="font-serif text-4xl text-stone-900 mb-2">
+      {stateName}
+    </h1>
+    <div class="flex items-center gap-4 mt-3">
+      <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium ${hasReq ? 'bg-green-100 text-green-800' : 'bg-stone-100 text-stone-600'}`}>
+        <span class={`w-2 h-2 rounded-full ${hasReq ? 'bg-green-600' : 'bg-stone-400'}`}></span>
+        {hasReq ? 'Has state requirement' : 'No state requirement'}
+      </span>
+      <span class="text-sm text-stone-500">
+        {stateData.agencyType === 'SAA' ? 'SAA state' : 'OA state'}
+      </span>
+    </div>
+  </header>
+
+  <!-- Agency Type -->
+  <section class="mb-10">
+    <h2 class="font-serif text-xl text-stone-900 mb-3">Apprenticeship Administration</h2>
+    <div class="bg-stone-100 rounded-lg p-4">
+      <p class="text-sm text-stone-700">
+        <span class="font-medium">{stateData.agencyType === 'SAA' ? 'State Apprenticeship Agency (SAA)' : 'Office of Apprenticeship (OA)'}</span>
+        — {stateData.agencyTypeDescription}
+      </p>
+    </div>
+  </section>
+
+  <!-- Requirement Details -->
+  {hasReq && req ? (
+    <section class="mb-10">
+      <h2 class="font-serif text-xl text-stone-900 mb-4">Requirement Details</h2>
+
+      <div class="space-y-6">
+        <!-- Summary Card -->
+        <div class="border border-stone-200 rounded-lg overflow-hidden">
+          <table class="w-full text-sm">
+            <tbody>
+              <tr class="border-b border-stone-100">
+                <td class="px-4 py-3 text-stone-500 font-medium w-44">Type</td>
+                <td class="px-4 py-3 text-stone-900 capitalize">{req.requirementType}</td>
+              </tr>
+              <tr class="border-b border-stone-100">
+                <td class="px-4 py-3 text-stone-500 font-medium">Ratio / Percentage</td>
+                <td class="px-4 py-3 text-stone-900 font-medium">{req.ratioValue}</td>
+              </tr>
+              <tr class="border-b border-stone-100">
+                <td class="px-4 py-3 text-stone-500 font-medium">Description</td>
+                <td class="px-4 py-3 text-stone-700">{req.ratioDescription}</td>
+              </tr>
+              <tr class="border-b border-stone-100">
+                <td class="px-4 py-3 text-stone-500 font-medium">Project Threshold</td>
+                <td class="px-4 py-3 text-stone-900">{req.projectThreshold}</td>
+              </tr>
+              <tr class="border-b border-stone-100">
+                <td class="px-4 py-3 text-stone-500 font-medium">Statute</td>
+                <td class="px-4 py-3">
+                  <a href={req.statuteUrl} class="text-stone-900 underline hover:text-stone-600" target="_blank" rel="noopener">
+                    {req.statute}
+                  </a>
+                </td>
+              </tr>
+              <tr class="border-b border-stone-100">
+                <td class="px-4 py-3 text-stone-500 font-medium">Penalty</td>
+                <td class="px-4 py-3 text-stone-700">{req.penaltyDescription}</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 text-stone-500 font-medium">Enforcement</td>
+                <td class="px-4 py-3">
+                  <a href={req.enforcementUrl} class="text-stone-900 underline hover:text-stone-600" target="_blank" rel="noopener">
+                    {req.enforcementAgency}
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Notes -->
+        {req.notes && (
+          <div class="text-sm text-stone-700 leading-relaxed bg-stone-50 border border-stone-200 rounded-lg p-4">
+            {req.notes}
+          </div>
+        )}
+
+        <!-- Exemptions -->
+        {req.exemptions?.length > 0 && (
+          <div>
+            <h3 class="text-sm font-medium text-stone-900 mb-2">Exemptions</h3>
+            <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
+              {req.exemptions.map((ex: string) => <li>{ex}</li>)}
+            </ul>
+          </div>
+        )}
+
+        <!-- Trade-Specific Ratios -->
+        {req.tradeSpecificRatios?.length > 0 && (
+          <div>
+            <h3 class="text-sm font-medium text-stone-900 mb-2">Trade-Specific Ratios</h3>
+            <div class="border border-stone-200 rounded-lg overflow-hidden">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="text-left text-stone-500 border-b border-stone-200 bg-stone-50">
+                    <th class="px-4 py-2 font-normal">Trade</th>
+                    <th class="px-4 py-2 font-normal">Ratio</th>
+                    <th class="px-4 py-2 font-normal">Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {req.tradeSpecificRatios.map((tr: any) => (
+                    <tr class="border-b border-stone-100">
+                      <td class="px-4 py-2 text-stone-900">{tr.trade}</td>
+                      <td class="px-4 py-2 text-stone-700 font-mono">{tr.ratio}</td>
+                      <td class="px-4 py-2 text-stone-500">{tr.source}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  ) : (
+    <section class="mb-10">
+      <h2 class="font-serif text-xl text-stone-900 mb-4">State Requirement</h2>
+      <div class="bg-stone-50 border border-stone-200 rounded-lg p-6">
+        <p class="text-stone-700 text-sm leading-relaxed">
+          {stateName} does not have a state-specific apprenticeship ratio requirement for public works projects.
+          However, federal IRA requirements may still apply to clean energy projects in this state.
+        </p>
+      </div>
+    </section>
+  )}
+
+  <!-- IRA Federal Requirement -->
+  {ira && (
+    <section class="mb-10">
+      <h2 class="font-serif text-xl text-stone-900 mb-4">Federal IRA Requirement</h2>
+      <div class="bg-stone-100 rounded-lg p-4">
+        <p class="text-sm text-stone-700 leading-relaxed mb-3">
+          {ira.ratioDescription}
+        </p>
+        <div class="flex flex-wrap gap-4 text-sm">
+          <span class="text-stone-600">
+            <span class="font-medium">Threshold:</span> {ira.projectThreshold}
+          </span>
+          <a href={ira.statuteUrl} class="text-stone-700 underline hover:text-stone-900" target="_blank" rel="noopener">
+            IRS guidance
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Sources -->
+  {stateData.sourceUrls?.length > 0 && (
+    <section class="mb-10">
+      <h2 class="font-serif text-xl text-stone-900 mb-4">Sources</h2>
+      <ul class="space-y-2">
+        {stateData.sourceUrls.map((url: string) => (
+          <li>
+            <a href={url} class="text-sm text-stone-700 underline hover:text-stone-900 break-all" target="_blank" rel="noopener">
+              {url}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="text-xs text-stone-400 mt-3">
+        Last verified: {stateData.lastVerified}
+      </p>
+    </section>
+  )}
+</Layout>

@@ -1,0 +1,54 @@
+{
+  "state": "OH",
+  "stateName": "Ohio",
+  "agencyType": "SAA",
+  "agencyTypeDescription": "State Apprenticeship Agency — state administers its own apprenticeship program",
+  "hasPublicWorksRequirement": true,
+  "requirement": {
+    "requirementType": "utilization",
+    "ratioDescription": "Apprentice participation goals on state capital improvement projects",
+    "ratioValue": "Varies by project",
+    "projectThreshold": "$250,000",
+    "projectThresholdValue": 250000,
+    "statute": "ORC 4115.04",
+    "statuteUrl": "https://codes.ohio.gov/ohio-revised-code/section-4115.04",
+    "exemptions": [
+      "Projects under $250,000",
+      "Good faith effort compliance"
+    ],
+    "tradeSpecificRatios": [],
+    "notes": "Ohio ties apprenticeship utilization to prevailing wage projects. The Department of Commerce oversees compliance.",
+    "penaltyDescription": "Prevailing wage act penalties",
+    "enforcementAgency": "Ohio Department of Commerce",
+    "enforcementUrl": "https://com.ohio.gov/divisions-and-programs/industrial-compliance/apprenticeship"
+  },
+  "iraFederalRequirement": {
+    "applies": true,
+    "ratioDescription": "15% apprentice labor hours on IRA/IIJA-funded clean energy projects over $1 million",
+    "ratioValue": "15%",
+    "projectThreshold": "$1,000,000",
+    "statute": "Inflation Reduction Act of 2022, 26 USC 45(b)(8)",
+    "statuteUrl": "https://www.irs.gov/credits-deductions/prevailing-wage-and-apprenticeship-requirements",
+    "notes": "Federal requirement for enhanced clean energy tax credits. Applies nationwide regardless of state law. Began 2023, percentage increases over time.",
+    "effectiveDate": "2023-01-01",
+    "escalation": [
+      {
+        "year": 2023,
+        "percentage": "10%"
+      },
+      {
+        "year": 2024,
+        "percentage": "12.5%"
+      },
+      {
+        "year": 2025,
+        "percentage": "15%"
+      }
+    ]
+  },
+  "sourceUrls": [
+    "https://codes.ohio.gov/ohio-revised-code/section-4115.04",
+    "https://com.ohio.gov/divisions-and-programs/industrial-compliance/apprenticeship"
+  ],
+  "lastVerified": "2026-02-06"
+}

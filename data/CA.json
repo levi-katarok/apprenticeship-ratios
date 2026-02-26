@@ -1,0 +1,71 @@
+{
+  "state": "CA",
+  "stateName": "California",
+  "agencyType": "SAA",
+  "agencyTypeDescription": "State Apprenticeship Agency — state administers its own apprenticeship program",
+  "hasPublicWorksRequirement": true,
+  "requirement": {
+    "requirementType": "ratio",
+    "ratioDescription": "1 apprentice hour for every 5 journeyman hours worked in each craft",
+    "ratioValue": "1:5",
+    "projectThreshold": "$30,000",
+    "projectThresholdValue": 30000,
+    "statute": "California Labor Code Section 1777.5",
+    "statuteUrl": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1777.5.&lawCode=LAB",
+    "exemptions": [
+      "Projects under $30,000",
+      "Contractors with fewer than 3 employees",
+      "Joint apprenticeship committees may grant exemptions"
+    ],
+    "tradeSpecificRatios": [
+      {
+        "trade": "Electricians",
+        "ratio": "1:5",
+        "source": "IBEW/NECA standards"
+      },
+      {
+        "trade": "Plumbers/Pipefitters",
+        "ratio": "1:5",
+        "source": "UA standards"
+      },
+      {
+        "trade": "Sheet Metal Workers",
+        "ratio": "1:5",
+        "source": "SMACNA standards"
+      }
+    ],
+    "notes": "California has the most comprehensive apprenticeship requirements. Contractors must request dispatch of apprentices from approved programs before starting work. Penalties of $100-$300 per day per apprentice for non-compliance.",
+    "penaltyDescription": "$100-$300 per day per apprentice not employed",
+    "enforcementAgency": "Division of Apprenticeship Standards (DAS)",
+    "enforcementUrl": "https://www.dir.ca.gov/das/"
+  },
+  "iraFederalRequirement": {
+    "applies": true,
+    "ratioDescription": "15% apprentice labor hours on IRA/IIJA-funded clean energy projects over $1 million",
+    "ratioValue": "15%",
+    "projectThreshold": "$1,000,000",
+    "statute": "Inflation Reduction Act of 2022, 26 USC 45(b)(8)",
+    "statuteUrl": "https://www.irs.gov/credits-deductions/prevailing-wage-and-apprenticeship-requirements",
+    "notes": "Federal requirement for enhanced clean energy tax credits. Applies nationwide regardless of state law. Began 2023, percentage increases over time.",
+    "effectiveDate": "2023-01-01",
+    "escalation": [
+      {
+        "year": 2023,
+        "percentage": "10%"
+      },
+      {
+        "year": 2024,
+        "percentage": "12.5%"
+      },
+      {
+        "year": 2025,
+        "percentage": "15%"
+      }
+    ]
+  },
+  "sourceUrls": [
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1777.5.&lawCode=LAB",
+    "https://www.dir.ca.gov/das/"
+  ],
+  "lastVerified": "2026-02-06"
+}

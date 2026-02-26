@@ -1,0 +1,55 @@
+{
+  "state": "WA",
+  "stateName": "Washington",
+  "agencyType": "SAA",
+  "agencyTypeDescription": "State Apprenticeship Agency — state administers its own apprenticeship program",
+  "hasPublicWorksRequirement": true,
+  "requirement": {
+    "requirementType": "utilization",
+    "ratioDescription": "15% apprentice labor hours on public works projects over $2 million",
+    "ratioValue": "15%",
+    "projectThreshold": "$2,000,000",
+    "projectThresholdValue": 2000000,
+    "statute": "RCW 39.04.320",
+    "statuteUrl": "https://app.leg.wa.gov/rcw/default.aspx?cite=39.04.320",
+    "exemptions": [
+      "Projects under $2 million",
+      "Emergency public works",
+      "Good faith effort compliance (if unable to meet 15%)"
+    ],
+    "tradeSpecificRatios": [],
+    "notes": "Washington uses a utilization percentage rather than a fixed ratio. Applies to all public works contracts over $2M. Contractors must submit apprentice utilization reports.",
+    "penaltyDescription": "Penalty of 2% of contract amount for non-compliance",
+    "enforcementAgency": "Washington State Department of Labor & Industries",
+    "enforcementUrl": "https://lni.wa.gov/licensing-permits/apprenticeship/"
+  },
+  "iraFederalRequirement": {
+    "applies": true,
+    "ratioDescription": "15% apprentice labor hours on IRA/IIJA-funded clean energy projects over $1 million",
+    "ratioValue": "15%",
+    "projectThreshold": "$1,000,000",
+    "statute": "Inflation Reduction Act of 2022, 26 USC 45(b)(8)",
+    "statuteUrl": "https://www.irs.gov/credits-deductions/prevailing-wage-and-apprenticeship-requirements",
+    "notes": "Federal requirement for enhanced clean energy tax credits. Applies nationwide regardless of state law. Began 2023, percentage increases over time.",
+    "effectiveDate": "2023-01-01",
+    "escalation": [
+      {
+        "year": 2023,
+        "percentage": "10%"
+      },
+      {
+        "year": 2024,
+        "percentage": "12.5%"
+      },
+      {
+        "year": 2025,
+        "percentage": "15%"
+      }
+    ]
+  },
+  "sourceUrls": [
+    "https://app.leg.wa.gov/rcw/default.aspx?cite=39.04.320",
+    "https://lni.wa.gov/licensing-permits/apprenticeship/"
+  ],
+  "lastVerified": "2026-02-06"
+}
